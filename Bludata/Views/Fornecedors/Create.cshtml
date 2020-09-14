@@ -11,7 +11,7 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">    
+    <div class="form-horizontal">
         <h4>Fornecedor</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
                 </div>
             </div>*@
 
-        <div class="container" id="teste">
+        <div id="teste">
             <div class="form-group" id="form-Telefone">
                 @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-4">
@@ -48,7 +48,7 @@
                     @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-2">
-                    <button class="btn btn-info" type="button" id="btn-Telefone">Adicionar telefone</button>
+                  <button class="btn btn-info" type="button" id="btn-Telefone">Adicionar telefone</button>
 
                 </div>
 
