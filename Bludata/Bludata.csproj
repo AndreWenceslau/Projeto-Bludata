@@ -135,6 +135,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009141842236_InitialCreate.cs" />
+    <Compile Include="Migrations\202009141842236_InitialCreate.designer.cs">
+      <DependentUpon>202009141842236_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009141859110_anre.cs" />
+    <Compile Include="Migrations\202009141859110_anre.designer.cs">
+      <DependentUpon>202009141859110_anre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\Fornecedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -201,6 +210,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202009141842236_InitialCreate.resx">
+      <DependentUpon>202009141842236_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009141859110_anre.resx">
+      <DependentUpon>202009141859110_anre.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
