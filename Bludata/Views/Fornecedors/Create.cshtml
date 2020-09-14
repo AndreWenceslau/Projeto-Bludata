@@ -27,7 +27,7 @@
             @Html.LabelFor(model => model.CNPJ, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control" } })
-                <buton t> </buton>                                                       
+                <buton t> </buton>
                 @Html.ValidationMessageFor(model => model.CNPJ, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -40,34 +40,35 @@
                 </div>
             </div>*@
 
-        <div class="form-group"> 
-            @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="container" id="teste">
+            <div class="form-group" id="form-Telefone">
+                @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-info" type="button" id="btn-Telefone">Adicionar telefone</button>
 
-            <div class="col-md-4">    
-                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                </div>
+
             </div>
-            <div class="col-md-2"> 
-                <button class="btn btn-info" type="button" id="button-addTelefone">Adicionar telefone</button>
+        </div>
 
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmpresaId, "Empresa", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("EmpresaId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
             </div>
-            <button class="btn btn-info" type="button" id="button-addTelefone">Adicionar telefone</button>
         </div>
 
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.EmpresaId, "Empresa", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("EmpresaId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
     </div>
 }
 
@@ -77,4 +78,9 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $("#btn-Telefone").click(function () {
+            $("#teste").append('<div class="form-group" id="form-Telefone">@Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" }) <div class="col-md-4">  @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } }) @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })</div> <div class="col-md-2"> </div></div>');
+        });
+    </script>
 }
