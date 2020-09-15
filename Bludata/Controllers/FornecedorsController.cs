@@ -49,18 +49,31 @@ namespace Bludata.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,CNPJ,DataHora,Telefone,EmpresaId")] Fornecedor fornecedor)
+        public ActionResult Create([Bind(Include = "Id,Nome,CNPJ,CPF,DataNascimento,Rg,Idade,DataHora,Telefone,EmpresaId")] Fornecedor fornecedor)
         {
+            int idade = DateTime.Now.Year - fornecedor.DataNascimento.Year;
+            fornecedor.Idade = idade;
             fornecedor.DataHora = DateTime.Now;
-            if (ModelState.IsValid)
+            if (fornecedor.CNPJ == null )
             {
+                fornecedor.CNPJ = "";
+            }
+            if(fornecedor.CPF == null &&  fornecedor.Rg == null)
+            {
+                fornecedor.CPF = "";
+                fornecedor.Rg = "" ;
+                
+            }
+            //if (ModelState.IsValid)
+            //{
+
                 db.Fornecedores.Add(fornecedor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            //}
 
-            ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nome", fornecedor.EmpresaId);
-            return View(fornecedor);
+            //ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nome", fornecedor.EmpresaId);
+            //return View(fornecedor);
         }
 
         // GET: Fornecedors/Edit/5
