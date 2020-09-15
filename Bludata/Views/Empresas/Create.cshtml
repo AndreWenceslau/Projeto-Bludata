@@ -7,14 +7,24 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Empresa</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div>
+                <label class="control-label col-md-2">Tipo Pessoa</label>
+                <div class="col-md-10">
+                    <label class="checkbox-inline"><input type="radio" name="optradio" value="">Pessoa Física</label>
+                    <label class="checkbox-inline"><input type="radio" name="optradio" value="">Pessoa Jurídica</label>
+                </div>
+            </div>
+
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -26,8 +36,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CNPJ, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CNPJ, "", new { @class = "text-danger" })
+                <div id="cpfcnpj">
+                    @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control", placeholder = "000.000.000-00" } })
+
+                    @Html.ValidationMessageFor(model => model.CNPJ, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
@@ -54,4 +67,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }
