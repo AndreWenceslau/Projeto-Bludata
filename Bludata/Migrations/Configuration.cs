@@ -9,8 +9,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            ContextKey = "Bludata.Acessodados.FornecedorContext";
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Bludata.Acessodados.FornecedorContext context)
