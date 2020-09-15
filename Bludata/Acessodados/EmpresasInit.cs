@@ -41,32 +41,34 @@ namespace Bludata.Acessodados
                 {
                     Nome = "Fornecedor 01",
                     CNPJ = "131.264.240-82",
+                    CPF = "sdfsdfsdf",
+                    DataNascimento = DateTime.Now,
+                    Rg = "sdfsdfsdf",
+                    Idade = 1,
                     DataHora = DateTime.Now,
                     Telefone = "(47) 3334-2468",
-                    Empresa =  empresas.FirstOrDefault(x => x.Nome == "Empresa 01")
-                    
-                },
+                    Empresa =  empresas.FirstOrDefault(x => x.Nome == "Empresa 01"),
+                    EmpresaId = 1
 
-                new Fornecedor()
-                {
-                    Nome = "Fornecedor 02",
-                    CNPJ = "131.264.240-83",
-                    DataHora = DateTime.Now,
-                    Telefone = "(47) 3334-2469",
-                    Empresa =  empresas.FirstOrDefault(x => x.Nome == "Empresa 02")
-                },
+                //},
 
-                new Fornecedor()
-                {
-                    Nome = "Fornecedor 03",
-                    CNPJ = "131.264.240-84",
-                    DataHora = DateTime.Now,
-                    Telefone = "(47) 3334-2470",
-                    Empresa =  empresas.FirstOrDefault(x => x.Nome == "Empresa 03")
-                },
+                //new Fornecedor()
+                //{
+                //    Nome = "Fornecedor 02",
+                //    CNPJ = "131.264.240-83",
+                //    DataHora = DateTime.Now,
+                //    Telefone = "(47) 3334-2469",
+                //    Empresa =  empresas.FirstOrDefault(x => x.Nome == "Empresa 02")
+                //},
 
-               
-
+                //new Fornecedor()
+                //{
+                //    Nome = "Fornecedor 03",
+                //    CNPJ = "131.264.240-84",
+                //    DataHora = DateTime.Now,
+                //    Telefone = "(47) 3334-2470",
+                //    Empresa =  empresas.FirstOrDefault(x => x.Nome == "Empresa 03")
+                }
             };
             fornecedores.ForEach(y => context.Fornecedores.Add(y));
             context.SaveChanges();
