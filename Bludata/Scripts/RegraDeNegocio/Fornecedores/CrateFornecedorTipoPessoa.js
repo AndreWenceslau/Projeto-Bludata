@@ -11,10 +11,6 @@
         $("#rg").show();
         $("#dataNascimento").show();
         //$("#validacao-cnpj").prop('disabled', true);
-       
-
-
-
     });
 
     $("#checkbox-pessoa-juridica").on('click', function () {
@@ -23,6 +19,4 @@
         $("#dataNascimento").hide();
         $("#Cnpj").show();
     });
-
-
 });
