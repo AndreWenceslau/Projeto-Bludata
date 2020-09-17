@@ -33,8 +33,8 @@ namespace Bludata.Models
         public DateTime DataHora { get; set; }
 
         [Required]
-        public string Telefone { get; set; }
-       
+        public List<string> Telefone { get; set; }
+
         public Empresa Empresa { get; set; }
         public int EmpresaId { get; set; }
 
