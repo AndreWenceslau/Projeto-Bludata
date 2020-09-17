@@ -37,6 +37,7 @@ namespace Bludata.Controllers
             return View(fornecedor);
         }
 
+
         // GET: Fornecedors/Create
         public ActionResult Create()
         {
@@ -54,20 +55,26 @@ namespace Bludata.Controllers
             int idade = DateTime.Now.Year - fornecedor.DataNascimento.Year;
             fornecedor.Idade = idade;
             fornecedor.DataHora = DateTime.Now;
+            var empresa = db.Empresas.FirstOrDefault(x => x.Id == fornecedor.EmpresaId);
             if (fornecedor.CNPJ == null )
             {
                 fornecedor.CNPJ = "";
             }
-            if(fornecedor.CPF == null &&  fornecedor.Rg == null)
+            if (fornecedor.CPF == null &&  fornecedor.Rg == null)
             {
-                fornecedor.CPF = "";
-                fornecedor.Rg = "" ;
-                
+
             }
-            //if (ModelState.IsValid)
+
+            if (fornecedor.Idade <18 && empresa.UF == "PR")
+            {
+                TempData["mensagemErro"] = "Não é possível realizar o cadastro. Pois a pessoa cadastrada é menor de idade";
+                ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nome", fornecedor.EmpresaId);
+                return View(fornecedor);
+            }
+            // if (ModelState.IsValid)
             //{
 
-                db.Fornecedores.Add(fornecedor);
+            db.Fornecedores.Add(fornecedor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             //}
