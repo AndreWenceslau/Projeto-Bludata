@@ -7,51 +7,54 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create")" class="btn btn-primary">
+        <span class="glyphicon glyphicon-plus"> </span>
+        Novo fornecedor
+    </a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Empresa
-        </th>
-        <th>
-            Fornecedor
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CNPJ)
-        </th>
-        <th>
-            Data/Hora
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefone)
-        </th>
-        <th></th>
-    </tr>
+<div class="form-group">
+    <form id="form-fornecedor" class="form-inline" action="/action_page.php">
+        <label for="" class="mr-sm-2">Nome:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" name="Nome" placeholder="Digite o Nome Desejado" id="">
+        <label for="" class="mr-sm-2">CPF:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" name="Cpf" placeholder="Digite o CPF Desejado" id="">
+        <label for="" class="mr-sm-2">CNPJ:</label>
+        <input type="text" class="form-control mb-2 mr-sm-2" name="Cnpj" placeholder="Digite o CNPJ Desejado" id="">
+        <label for="" class="mr-sm-2">Data do Cadastro:</label>
+        <input type="datetime-local" class="form-control mb-2 mr-sm-2" name="DataHora" placeholder="Digite a Data Desejado" id="">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Empresa.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CNPJ)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataHora)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefone)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+        <button type="button" id="btnPesquisar" class="btn btn-primary mb-2">Filtrar</button>
+
+        <input type="hidden" name="pagina" value="1" />
+        <input type="hidden" name="registros" value="5" />
+    </form>
+</div>
+<div id="listagemFornecedores"></div>
+@section scripts{
+    <script type="text/javascript">
+
+        $(document).ready(configurarController);
+        function configurarController() {
+            ListarFornecedores();
+            $("#btnPesquisar").click(ListarFornecedores);
+            
+        }
+        
+        function Paginar(valor) {
+
+            var elementoPagina = $("input[name='pagina']");
+
+            var paginaAtual = parseInt(elementoPagina.val());
+            if (paginaAtual == 1 && valor == -1) {
+                return;
+            }
+            elementoPagina.val(paginaAtual + valor);
+            ListarFornecedores();
+        }
+        function ListarFornecedores() {
+            $("#listagemFornecedores").load("@Url.Action("Listar")", $("form").serialize());
+        }
+    </script>
 }
 
-</table>
+

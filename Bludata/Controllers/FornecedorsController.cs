@@ -18,8 +18,29 @@ namespace Bludata.Controllers
         // GET: Fornecedors
         public ActionResult Index()
         {
+            return View();
+        }
+        public PartialViewResult Listar(Fornecedor fornecedor, int pagina = 1, int registros = 5)
+        {
             var fornecedores = db.Fornecedores.Include(f => f.Empresa);
-            return View(fornecedores.ToList());
+            if (!String.IsNullOrWhiteSpace(fornecedor.Nome))
+            {
+                fornecedores = fornecedores.Where(x => x.Nome.Contains(fornecedor.Nome));
+            }
+            if (!String.IsNullOrWhiteSpace(fornecedor.CPF))
+            {
+                fornecedores = fornecedores.Where(x => x.CPF.Contains(fornecedor.CPF));
+            }
+            if (!String.IsNullOrWhiteSpace(fornecedor.CNPJ))
+            {
+                fornecedores = fornecedores.Where(x => x.CNPJ.Contains(fornecedor.CNPJ));
+            }
+            if(DateTime.MinValue.Date != fornecedor.DataHora )
+            {
+                fornecedores = fornecedores.Where(x => x.DataHora.Equals(fornecedor.DataHora));
+            }
+            var fornecedoresPaginado = fornecedores.OrderBy(x => x.Nome).Skip((pagina - 1) * registros).Take((registros));
+            return PartialView("_Listar", fornecedoresPaginado.ToList());
         }
 
         // GET: Fornecedors/Details/5
@@ -45,9 +66,6 @@ namespace Bludata.Controllers
             return View();
         }
 
-        // POST: Fornecedors/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,CNPJ,CPF,DataNascimento,Rg,Idade,DataHora,Telefone,EmpresaId")] Fornecedor fornecedor)
@@ -56,16 +74,16 @@ namespace Bludata.Controllers
             fornecedor.Idade = idade;
             fornecedor.DataHora = DateTime.Now;
             var empresa = db.Empresas.FirstOrDefault(x => x.Id == fornecedor.EmpresaId);
-            if (fornecedor.CNPJ == null )
+            if (fornecedor.CNPJ == null)
             {
                 fornecedor.CNPJ = "";
             }
-            if (fornecedor.CPF == null &&  fornecedor.Rg == null)
+            if (fornecedor.CPF == null && fornecedor.Rg == null)
             {
 
             }
 
-            if (fornecedor.Idade <18 && empresa.UF == "PR")
+            if (fornecedor.Idade < 18 && empresa.UF == "PR")
             {
                 TempData["mensagemErro"] = "Não é possível realizar o cadastro. Pois a pessoa cadastrada é menor de idade";
                 ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nome", fornecedor.EmpresaId);
@@ -75,8 +93,8 @@ namespace Bludata.Controllers
             //{
 
             db.Fornecedores.Add(fornecedor);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            db.SaveChanges();
+            return RedirectToAction("Index");
             //}
 
             //ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nome", fornecedor.EmpresaId);
@@ -99,9 +117,6 @@ namespace Bludata.Controllers
             return View(fornecedor);
         }
 
-        // POST: Fornecedors/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Nome,CNPJ,DataHora,Telefone,EmpresaId")] Fornecedor fornecedor)
