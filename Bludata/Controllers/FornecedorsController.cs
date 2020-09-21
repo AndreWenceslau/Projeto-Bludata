@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -35,9 +36,12 @@ namespace Bludata.Controllers
             {
                 fornecedores = fornecedores.Where(x => x.CNPJ.Contains(fornecedor.CNPJ));
             }
-            if(DateTime.MinValue.Date != fornecedor.DataHora )
+            if(DateTime.MinValue.Date != fornecedor.DataHora.Date)
             {
-                fornecedores = fornecedores.Where(x => x.DataHora.Equals(fornecedor.DataHora));
+                //var fornecedores1 = fornecedores.Select(x => x.DataHora.Date).ToList().ToString();
+               //var fornecedores2 = fornecedores.Select(x => fornecedor.DataHora.Date).ToList().ToString();
+                fornecedores = fornecedores.Where(x => DbFunctions.TruncateTime( x.DataHora)== DbFunctions.TruncateTime(fornecedor.DataHora));
+                //fornecedores = fornecedores1.Contains(fornecedores2);
             }
             var fornecedoresPaginado = fornecedores.OrderBy(x => x.Nome).Skip((pagina - 1) * registros).Take((registros));
             return PartialView("_Listar", fornecedoresPaginado.ToList());
