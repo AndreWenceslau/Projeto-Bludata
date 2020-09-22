@@ -1,4 +1,6 @@
 ﻿$(function () {
+
+    // máscaras
     $("#input-cpf").inputmask("mask", {
         "mask": "999.999.999-99"
     }, {
@@ -22,13 +24,17 @@
     }, {
             reverse: true
         });
-    $("#Cnpj").hide();
-    $("#Cpf").show();
+
+    $("#Cnpj").hide(); // campo cnpj invisivel
+    $("#Cpf").show(); // campo cpf visível
+    $("#rg").show();  // campo rg visível
+    $("#dataNascimento").show(); // campo Data de nascimento visível
+
+    //requerimento dos campos
     $("#input-cpf").prop('required', true);
-    $("#rg").show();
     $("#input-rg").prop('required', true);
-    $("#dataNascimento").show();
     $("#input-dataNascimento").prop('required', true);
+
     //checkbox para escolher o tipo da pessoa. 
     $("#checkbox-pessoa-fisica").on('click', function () {
         $("#Cnpj").hide();
@@ -39,6 +45,7 @@
         //$("#validacao-cnpj").prop('disabled', true);
     });
 
+    // caso o usuário escolha pessoa jurídica
     $("#checkbox-pessoa-juridica").on('click', function () {
         $("#Cpf").hide();
         $("#rg").hide();

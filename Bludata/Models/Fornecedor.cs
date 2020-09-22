@@ -22,14 +22,15 @@ namespace Bludata.Models
         //[RegularExpression(@"(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/)", ErrorMessage ="Informe um CPF válido")]
         public string CPF { get; set; }
 
-        //[Required]
+       [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+
         public DateTime DataNascimento { get; set; }
 
         //[Required]
         public string Rg { get; set; }
 
         public int Idade { get; set; }
-
+        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataHora { get; set; }
 
         [Required]

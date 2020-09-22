@@ -64,14 +64,8 @@
         <div class="form-group" id="dataNascimento">
             @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-
                 <input id="input-dataNascimento" @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @type = "Date" } })
-                       @if (TempData["mensagemErro"] != null) {<div class="field-error">
-                    <div class="text-danger">
-                        @TempData["mensagemErro"]
-                    </div>
-                </div>
-            }
+                       @if (TempData["mensagemErro"] != null) {<div class="field-error"><div class="text-danger"> @TempData["mensagemErro"]</div></div>}
 </div>
 </div>
 
@@ -84,7 +78,6 @@
         </div>
         <div class="col-md-2">
             <button class="btn btn-info" type="button" id="btn-Telefone">Adicionar telefone</button>
-
         </div>
     </div>
 </div>
@@ -104,9 +97,9 @@
 </div>
 </div>
 
-    <div>
-           @Html.ActionLink("Voltar para a Lista", "Index", null, new { @class = "btn btn-primary" })
-    </div>
+<div>
+    @Html.ActionLink("Voltar para a Lista", "Index", null, new { @class = "btn btn-primary" })
+</div>
 }
 
 @section Scripts {
@@ -114,7 +107,7 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    <script src="~/Scripts/RegraDeNegocio/Fornecedores/CrateFornecedorTipoPessoa.js"></script>
+    <script src="~/Scripts/RegraDeNegocio/Fornecedores/CreateFornecedorTipoPessoa.js"></script>
     <script>
         $("#btn-Telefone").click(function () {
             $("#addTelefone").append('<div class="form-group" id="form-Telefone">@Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" }) <div class="col-md-4">  @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } }) @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })</div> <div class="col-md-2"> </div></div>');
