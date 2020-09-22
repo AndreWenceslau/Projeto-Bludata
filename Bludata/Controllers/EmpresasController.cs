@@ -15,13 +15,17 @@ namespace Bludata.Controllers
     {
         private FornecedorContext db = new FornecedorContext();
 
-        // GET: Empresas
         public ActionResult Index()
         {
-            return View(db.Empresas.ToList());
+            return View();
         }
-
-        // GET: Empresas/Details/5
+        public PartialViewResult ListarEmpresas(Empresa empresa, int pagina = 1, int registros = 5)
+        {
+            var empresas = db.Empresas;
+            var empresasPaginado = empresas.OrderBy(x => x.Nome).Skip((pagina - 1) * registros).Take((registros));
+            return PartialView("~/Views/Empresas/_ListarEmpresas.cshtml", empresasPaginado.ToList());
+        }
+                                                                                             
         public ActionResult Details(int? id)
         {
             if (id == null)
