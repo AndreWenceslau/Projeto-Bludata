@@ -11,82 +11,96 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Fornecedor</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+<div class="form-horizontal">
+    <h4>Fornecedor</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <div id="Cnpj">
-                @Html.LabelFor(model => model.CNPJ, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div id="validacao-cnpj">
-                        <input id="input-cnpj" required @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control" } })
-                               @Html.ValidationMessageFor(model => model.CNPJ, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
-            <div id="Cpf">
-                @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-
-                    <input id="input-cpf" @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control" } })
-                           @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div id="Cnpj">
+            @Html.LabelFor(model => model.CNPJ, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div id="validacao-cnpj">
+                    <input id="input-cnpj" required @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.CNPJ, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
-        <div class="form-group" id="rg">
-            @Html.LabelFor(model => model.Rg, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div id="Cpf">
+            @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input id="input-rg" @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { @class = "form-control" } })
+
+                <input id="input-cpf" @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control" } })
+                       @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        <div class="form-group" id="dataNascimento">
-            @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input id="input-dataNascimento" @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @type = "Date" } })
-                       @*@if (TempData["mensagemErro"] != null) {<div class="field-error"><div class="text-danger"> @TempData["mensagemErro"]</div></div>}*@
-</div>
-</div>
-
-<div id="addTelefone">
-    <div class="form-group" id="form-Telefone">
-        @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
-            <input id="input-telefone" @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
-                   @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-info" type="button" id="btn-Telefone">Adicionar telefone</button>
+    <div class="form-group" id="rg">
+        @Html.LabelFor(model => model.Rg, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input id="input-rg" @Html.EditorFor(model => model.Rg, new { htmlAttributes = new { @class = "form-control" } })
         </div>
     </div>
-</div>
 
-<div class="form-group">
-    @Html.LabelFor(model => model.EmpresaId, "Empresa", htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.DropDownList("EmpresaId", null, htmlAttributes: new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
+    <div class="form-group" id="dataNascimento">
+        @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input id="input-dataNascimento" @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @type = "Date" } })
+                   @*@if (TempData["mensagemErro"] != null) {<div class="field-error"><div class="text-danger"> @TempData["mensagemErro"]</div></div>}*@
+        </div>
     </div>
-</div>
 
-<div class="form-group">
-    <div class="col-md-offset-2 col-md-10">
-        <input type="submit" value="Save" class="btn btn-default" />
+
+    <div class="disabled">
+        <div class="form-group " id="dataCadastro">
+            <div id="input-dataHora">
+                <div class="col-md-10">
+                    <input type="datetime" class="disabled" @Html.EditorFor(model => model.DataHora, new { htmlAttributes = new { @type = "Date" } })
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+
+
+
+    <div id="addTelefone">
+        <div class="form-group" id="form-Telefone">
+            @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                <input id="input-telefone" @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+                       @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-info" type="button" id="btn-Telefone">Adicionar telefone</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmpresaId, "Empresa", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("EmpresaId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
 </div>
 }
 

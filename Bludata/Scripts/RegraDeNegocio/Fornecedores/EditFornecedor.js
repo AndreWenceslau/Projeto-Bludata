@@ -1,4 +1,9 @@
 ﻿$(function () {
+    $(document).ready(configurarController);
+    function configurarController() {
+        
+
+    }
 
     // máscaras
     $("#input-cpf").inputmask("mask", {
@@ -31,7 +36,9 @@
      if ($('#input-cpf').val() == "") {
         $("#Cnpj").show();
         $("#Cpf").hide();
+       
         $("#rg").hide();
         $("#dataNascimento").hide();
     }
+    $("#dataCadastro").hide();
 });

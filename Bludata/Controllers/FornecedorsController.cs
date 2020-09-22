@@ -16,6 +16,8 @@ namespace Bludata.Controllers
     {
         private FornecedorContext db = new FornecedorContext();
 
+        private Fornecedor fornecedor01 = new Fornecedor();
+
         public ActionResult Index()
         {
             return View();
@@ -116,17 +118,19 @@ namespace Bludata.Controllers
             {
                 return HttpNotFound();
             }
+            var dataCadastroOriginal = fornecedor.DataHora;
             ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nome", fornecedor.EmpresaId);
             return View(fornecedor);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,CNPJ,DataHora,Telefone,EmpresaId")] Fornecedor fornecedor)
+        public ActionResult Edit([Bind(Include = "Id,Nome,CNPJ,CPF,DataNascimento,Rg,Idade,DataHora,Telefone,EmpresaId")] Fornecedor fornecedor)
         {
             
             if (ModelState.IsValid)
             {
+                
                 db.Entry(fornecedor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
