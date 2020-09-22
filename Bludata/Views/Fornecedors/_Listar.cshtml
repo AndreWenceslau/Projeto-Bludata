@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.CNPJ)
         </th>
         <th>
-            Data/Hora
+            Data/Hora do Cadastro
         </th>
         <th>
             Ação
@@ -41,9 +41,9 @@
                 @Html.DisplayFor(modelItem => item.DataHora)
             </td>
             <td>
-                <button type="button" class="btn btn-info">@Html.ActionLink("Editar", "Edit", new { id = item.Id })</button>
-                <button type="button" class="btn btn-Primary">@Html.ActionLink("Detalhes", "Details", new { id = item.Id })</button>
-                <button type="button" class="btn btn-danger">@Html.ActionLink("Apagar", "Delete", new { id = item.Id })</button>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Apagar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }
@@ -52,10 +52,10 @@
 <div class="text-right">
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
-            <li class="page-item ">
+            <li class="page-item" id="item-anterior-fornecedores">
                 <a class="page-link" href="#" onclick="Paginar(-1)">Anterior</a>
             </li>
-            <li class="page-item" id="btn-proximo">
+            <li class="page-item" id="item-proximo-fornecedores">
                 <a class="page-link" href="#" onclick="Paginar(1)">Próximo</a>
             </li>
         </ul>

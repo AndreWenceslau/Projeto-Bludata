@@ -41,23 +41,25 @@
         }
 
         function Paginar(valor) {
-
             var elementoPagina = $("input[name='pagina']");
             var paginaAtual = parseInt(elementoPagina.val());
             if (paginaAtual == 1 && valor == -1)
             {
                 return;
             }
-            @*var socorro = @TempData["quantidadePaginasFornecedoresHtml"];
-            if (socorro == paginaAtual)
+            @if (@TempData["quantidadePaginasFornecedoresHtml"] != null)
             {
-                alert("eae");
-                $("#btn-proximo").attr('disabled')
-            }*@
+                return;
+            }
             elementoPagina.val(paginaAtual + valor);
             ListarFornecedores();
         }
         function ListarFornecedores() {
+            @if (@TempData["quantidadePaginasFornecedoresHtml"] != null)
+            {
+                return;
+            }
+            
             $("#listagemFornecedores").load("@Url.Action("Listar")", $("form").serialize());
         }
     </script>

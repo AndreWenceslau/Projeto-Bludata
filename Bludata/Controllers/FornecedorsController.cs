@@ -41,8 +41,11 @@ namespace Bludata.Controllers
                 fornecedores = fornecedores.Where(x => DbFunctions.TruncateTime( x.DataHora)== DbFunctions.TruncateTime(fornecedor.DataHora));
             }
             var fornecedoresPaginado = fornecedores.OrderBy(x => x.Nome).Skip((pagina - 1) * registros).Take((registros));
-            //int quantidadePaginasFornecedores = fornecedoresPaginado.Count();
-            //TempData["quantidadePaginasFornecedoresHtml"] = quantidadePaginasFornecedores;
+            int quantidadePaginasFornecedores = fornecedoresPaginado.Count();
+            if(quantidadePaginasFornecedores == 0)
+            {
+                TempData["quantidadePaginasFornecedoresHtml"] = quantidadePaginasFornecedores;
+            }
 
             return PartialView("_Listar", fornecedoresPaginado.ToList());
         }
