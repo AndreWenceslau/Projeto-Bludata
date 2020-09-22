@@ -39,7 +39,7 @@
             ListarEmpresas();
         }
         function ListarEmpresas() {
-            $("#listagemEmpresas").load("@Url.Action("ListarEmpresas")", $("form").serialize());
+            $("#listagemEmpresas").load("@Url.Action("ListarEmpresas")", $("form").serialize()); // Não consegui colocar o script em um arquivo separado devido ao Razor
         }
     </script>
 }

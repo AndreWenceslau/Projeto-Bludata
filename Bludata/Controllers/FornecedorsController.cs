@@ -16,11 +16,11 @@ namespace Bludata.Controllers
     {
         private FornecedorContext db = new FornecedorContext();
 
-        // GET: Fornecedors
         public ActionResult Index()
         {
             return View();
         }
+
         public PartialViewResult Listar(Fornecedor fornecedor, int pagina = 1, int registros = 5)
         {
             var fornecedores = db.Fornecedores.Include(f => f.Empresa);
@@ -40,7 +40,7 @@ namespace Bludata.Controllers
             {
                 fornecedores = fornecedores.Where(x => DbFunctions.TruncateTime( x.DataHora)== DbFunctions.TruncateTime(fornecedor.DataHora));
             }
-            var fornecedoresPaginado = fornecedores.OrderBy(x => x.Nome).Skip((pagina - 1) * registros).Take((registros));
+            var fornecedoresPaginado = fornecedores.OrderBy(x => x.DataHora).Skip((pagina - 1) * registros).Take((registros));
             int quantidadePaginasFornecedores = fornecedoresPaginado.Count();
             if(quantidadePaginasFornecedores == 0)
             {
@@ -50,7 +50,6 @@ namespace Bludata.Controllers
             return PartialView("_Listar", fornecedoresPaginado.ToList());
         }
 
-        // GET: Fornecedors/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -65,8 +64,6 @@ namespace Bludata.Controllers
             return View(fornecedor);
         }
 
-
-        // GET: Fornecedors/Create
         public ActionResult Create()
         {
             ViewBag.EmpresaId = new SelectList(db.Empresas, "Id", "Nome");
@@ -108,7 +105,6 @@ namespace Bludata.Controllers
             //return View(fornecedor);
         }
 
-        // GET: Fornecedors/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -128,6 +124,7 @@ namespace Bludata.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Nome,CNPJ,DataHora,Telefone,EmpresaId")] Fornecedor fornecedor)
         {
+            
             if (ModelState.IsValid)
             {
                 db.Entry(fornecedor).State = EntityState.Modified;
@@ -138,7 +135,6 @@ namespace Bludata.Controllers
             return View(fornecedor);
         }
 
-        // GET: Fornecedors/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -153,7 +149,6 @@ namespace Bludata.Controllers
             return View(fornecedor);
         }
 
-        // POST: Fornecedors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
