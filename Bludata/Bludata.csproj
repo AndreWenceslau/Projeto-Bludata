@@ -197,6 +197,7 @@
     <Content Include="Views\Fornecedors\Edit.cshtml" />
     <Content Include="Views\Fornecedors\Index.cshtml" />
     <Content Include="Views\Fornecedors\_Listar.cshtml" />
+    <Content Include="Views\Empresas\_ListarEmpresas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

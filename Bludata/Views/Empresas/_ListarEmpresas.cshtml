@@ -1,21 +1,15 @@
-﻿@model IEnumerable<Bludata.Models.Fornecedor>
+﻿@model IEnumerable<Bludata.Models.Empresa>
 
-<table class="table table-bordered">
+<table class="table">
     <tr>
         <th>
-            Empresa
-        </th>
-        <th>
-            Fornecedor
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CPF)
+            @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CNPJ)
         </th>
         <th>
-            Data/Hora
+            @Html.DisplayNameFor(model => model.UF)
         </th>
         <th>
             Ação
@@ -26,24 +20,18 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Empresa.Nome)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CPF)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CNPJ)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataHora)
+                @Html.DisplayFor(modelItem => item.UF)
             </td>
             <td>
-                <button type="button" class="btn btn-info">@Html.ActionLink("Editar", "Edit", new { id = item.Id })</button>
-                <button type="button" class="btn btn-Primary">@Html.ActionLink("Detalhes", "Details", new { id = item.Id })</button>
-                <button type="button" class="btn btn-danger">@Html.ActionLink("Apagar", "Delete", new { id = item.Id })</button>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
@@ -61,3 +49,5 @@
         </ul>
     </nav>
 </div>
+
+

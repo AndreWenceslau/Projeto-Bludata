@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Fornecedores</h2>
 
 <p>
     <a href="@Url.Action("Create")" class="btn btn-primary">
@@ -23,7 +23,7 @@
         <label for="" class="mr-sm-2">Data do Cadastro:</label>
         <input type="date" class="form-control mb-2 mr-sm-2" name="DataHora" placeholder="Digite a Data Desejado" id="">
 
-        <button type="button" id="btnPesquisar" class="btn btn-primary mb-2">Filtrar</button>
+        <button type="button" id="btnPesquisar" class="btn btn-success mb-2">Filtrar</button>
 
         <input type="hidden" name="pagina" value="1" />
         <input type="hidden" name="registros" value="5" />
@@ -37,17 +37,23 @@
         function configurarController() {
             ListarFornecedores();
             $("#btnPesquisar").click(ListarFornecedores);
-            
+
         }
-        
+
         function Paginar(valor) {
 
             var elementoPagina = $("input[name='pagina']");
-
             var paginaAtual = parseInt(elementoPagina.val());
-            if (paginaAtual == 1 && valor == -1) {
+            if (paginaAtual == 1 && valor == -1)
+            {
                 return;
             }
+            @*var socorro = @TempData["quantidadePaginasFornecedoresHtml"];
+            if (socorro == paginaAtual)
+            {
+                alert("eae");
+                $("#btn-proximo").attr('disabled')
+            }*@
             elementoPagina.val(paginaAtual + valor);
             ListarFornecedores();
         }

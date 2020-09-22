@@ -38,12 +38,12 @@ namespace Bludata.Controllers
             }
             if(DateTime.MinValue.Date != fornecedor.DataHora.Date)
             {
-                //var fornecedores1 = fornecedores.Select(x => x.DataHora.Date).ToList().ToString();
-               //var fornecedores2 = fornecedores.Select(x => fornecedor.DataHora.Date).ToList().ToString();
                 fornecedores = fornecedores.Where(x => DbFunctions.TruncateTime( x.DataHora)== DbFunctions.TruncateTime(fornecedor.DataHora));
-                //fornecedores = fornecedores1.Contains(fornecedores2);
             }
             var fornecedoresPaginado = fornecedores.OrderBy(x => x.Nome).Skip((pagina - 1) * registros).Take((registros));
+            //int quantidadePaginasFornecedores = fornecedoresPaginado.Count();
+            //TempData["quantidadePaginasFornecedoresHtml"] = quantidadePaginasFornecedores;
+
             return PartialView("_Listar", fornecedoresPaginado.ToList());
         }
 
