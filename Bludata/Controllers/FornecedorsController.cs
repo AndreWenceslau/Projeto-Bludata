@@ -76,7 +76,9 @@ namespace Bludata.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,CNPJ,CPF,DataNascimento,Rg,Idade,DataHora,Telefone,EmpresaId")] Fornecedor fornecedor)
         {
+            var dataNascimento = fornecedor.DataNascimento;
             int idade = DateTime.Now.Year - fornecedor.DataNascimento.Year;
+            fornecedor.DataNascimento = dataNascimento;
             fornecedor.Idade = idade;
             fornecedor.DataHora = DateTime.Now;
             var empresa = db.Empresas.FirstOrDefault(x => x.Id == fornecedor.EmpresaId);
