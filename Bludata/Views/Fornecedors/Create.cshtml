@@ -87,15 +87,17 @@
     <div class="col-md-10">
         @Html.DropDownList("EmpresaId", null, htmlAttributes: new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
+            
     </div>
 </div>
 
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
-        <button type="submit" value="Create" class="btn btn-success">Criar</button>
+        <button type="submit" value="Create" class="btn btn-success" id="btn-criar">Criar</button>
     </div>
 </div>
 </div>
+    
 
 <div>
     @Html.ActionLink("Voltar para a Lista", "Index", null, new { @class = "btn btn-primary" })
@@ -109,8 +111,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script src="~/Scripts/RegraDeNegocio/Fornecedores/CreateFornecedorTipoPessoa.js"></script>
     <script>
-        $("#btn-Telefone").click(function () {
-            $("#addTelefone").append('<div class="form-group" id="form-Telefone">@Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" }) <div class="col-md-4">  @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } }) @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })</div> <div class="col-md-2"> </div></div>');
+        $(function () {
+            var telefones = "";
+            $("#btn-Telefone").click(function () {
+            @{var quantidadeTelefone = 1; }
+                $("#addTelefone").append('<div class="form-group" id="input-telefone">@Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" }) <div class="col-md-4">  <input type="text" class ="form-control" id ="teste@{quantidadeTelefone.ToString();}"></div> <div class="col-md-2"> </div></div>');
+                 telefones = telefones + "/" + $("#teste@{quantidadeTelefone.ToString();}").val();
+                @{quantidadeTelefone++;}}
+            )
         });
     </script>
 
