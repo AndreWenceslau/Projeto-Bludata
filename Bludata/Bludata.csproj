@@ -149,6 +149,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Bludata.Acessodados.FornecedorContext.mdf" />
+    <Content Include="App_Data\Bludata.Acessodados.FornecedorContext_log.ldf">
+      <DependentUpon>Bludata.Acessodados.FornecedorContext.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\Bludata.dll" />
@@ -278,7 +282,6 @@
     <Content Include="Views\Empresas\_ListarEmpresas.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Business\Empresas\" />
     <Folder Include="Business\Fornecedores\" />
   </ItemGroup>
